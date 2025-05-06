@@ -1,0 +1,706 @@
+<index class="html">
+    
+</index><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jules Cyber Security Portfolio</title>
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            color: #eee;
+            overflow-x: hidden;
+        }
+
+        /* Common styles */
+        section {
+            padding: 100px 20px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1s ease, transform 1s ease;
+            transform: translateY(20px);
+        }
+
+        section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1, h2 {
+            color: #eee;
+            margin-bottom: 20px;
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: #1a1a1a;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #eee;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #007bff;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding-top: 60px;
+            background-image: url('cybersecurity-background.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #eee;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .profile-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #007bff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Card Components */
+        .card-base {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .card-base:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-item,
+        .certifications-item,
+        .project-card {
+            composes: card-base;
+            margin: 10px 0;
+        }
+
+        /* Skills Section */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        /* Certifications Section */
+        .certifications-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Projects Section */
+        .project-title {
+            cursor: pointer;
+            color: #007bff;
+            padding: 10px;
+            margin: 0;
+            transition: color 0.3s ease;
+        }
+
+        .project-title:hover {
+            color: #0056b3;
+        }
+
+        .project-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 15px;
+        }
+
+        .project-content.active {
+            max-height: 3000px;
+            padding: 15px;
+        }
+
+        /* Case Study */
+        .case-study {
+            background: #1a1a1a;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 4px solid #007bff;
+        }
+
+        .case-study h4 {
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background: #2a2a2a;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            margin: 0;
+        }
+
+        .code-block code {
+            color: #e6e6e6;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #333333;
+            color: #fff;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+        }
+
+        .contact-form button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: #eee;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Image Gallery Styles */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+
+</head>
+<body>
+   
+    <header>
+       
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+     <section id="hero" class="hero">
+        <div class="profile-section">
+            <img src="./images/2021-07-23-19-17-09.jpg" alt="Profile" class="profile-image">
+        </div>
+        <h1>Jules Wendyiida Micaël SAWADOGO Cyber Security Analyst</h1>
+        <p>Protecting Your Digital World</p>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I am an aspiring Cyber Security Analyst with a foundation in penetration testing, digital forensics, and network security. Certified in Google Cyber Security and Harvard CS50 Cyber Security, I am passionate about identifying vulnerabilities, securing systems, and analyzing cyber threats.
+            I have hands-on experience with SIEM tools, Python scripting, Linux Bash, and ethical hacking techniques. Through Capture The Flag (CTF) competitions and personal cybersecurity projects, I have developed practical skills in network security, incident response, and offensive security testing.
+            I am constantly learning and expanding my expertise in ethical hacking, OSINT, and security analysis, aiming to contribute to a safer digital world. I am seeking opportunities to apply my knowledge and skills in real-world cybersecurity challenges.
+            Let's connect and secure the future together!</p>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-list">
+            <div class="skill-item"> Offensive Security: Penetration Testing (Kali Linux, Metasploit, Nmap)</div>
+            <div class="skill-item">Defensive Security: Digital Forensics, Incident Response</div>
+            <div class="skill-item"> Tools & Technologies: Wireshark,Metasploit, OSINT, Chronicle, Splunk,Nmap.</div>
+            <div class="skill-item"> Programming: Python, Linux Bash, SQL, HTML, CSS</div>
+            <div class="skill-item">Networking & Security: TCP/IP, IDS/IPS, Firewalls, VPN</div>
+            <div class="skill-item">CTF & Security Research: Vulnerability detection, practical security challenges</div>
+           
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2>Certifications</h2>
+        <div class="certifications-list">
+            <div class="certifications-item">Google Cyber Security Certificate</div>
+            <div class="certifications-item">Harvard CS50 Cyber Security</div>
+            <div class="certifications-item">Digital Forensics Investigation – Alison</div>
+            <div class="certifications-item">Hacking & Cyber Security – Hacker X</div>
+        </div>
+    </section>
+
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project-grid">
+            <h3 class="project-title">🔹 Project 1: Automated IP Access List Management</h3>
+            <div class="project-content">
+                <div class="project-section">
+                    <h4>🛠️ Methodology & Implementation</h4>
+                    <div class="code-block">
+                        <pre><code># Reading and converting the IP list
+        # Open and read allow_list.txt
+        with open("allow_list.txt", "r") as file:
+            ip_addresses = file.read().split()
+        
+        # Read remove_list.txt
+        with open("remove_list.txt", "r") as file:
+            remove_list = file.read().split()
+        
+        # Removing unauthorized IPs
+        for ip in remove_list:
+            if ip in ip_addresses:
+                ip_addresses.remove(ip)
+        
+        # Convert the list back to text format
+        new_content = "\n".join(ip_addresses)
+        with open("allow_list.txt", "w") as file:
+            file.write(new_content)</code></pre>
+                    </div>
+                </div>
+        
+                <div class="project-section">
+                    <div class="contains">
+                        <h4>The automated system successfully filtered out unauthorized IPs and updated the access list in real-time. The system was tested with various scenarios, including:</h2>
+                        <ul>
+                            <li>Adding new IPs to the allow list</li>
+                            <li>Removing unauthorized IPs</li>
+                            <li>Logging access attempts</li>
+                        </ul>
+                    <h4>🚀 Project Overview</h4>
+                    <p>Developed an automated system for managing IP access lists using Python. The system includes features for:</p>
+                    <ul>
+                        <li>Real-time IP validation and filtering</li>
+                        <li>Automated updates of firewall rules</li>
+                        <li>Logging and monitoring of access attempts</li>
+                        <li>Integration with existing security infrastructure</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <div class="project-card">
+            <h3 class="project-title">🔹 Project 2: Cybersecurity Incident Handler's Journal</h3>
+            <div class="project-content">
+                <div class="project-section">
+                    <h4>📍 Google Cyber Security Course</h4>
+                    <p class="project-subtitle">🔍 Objective: Comprehensive incident response and analysis</p>
+                    
+                    <div class="case-study">
+                        <h4>📌 1. Analyzing a Ransomware Attack</h4>
+                        <p><strong>Problem:</strong> A healthcare organization suffered a ransomware attack after a phishing attempt.</p>
+                        <p><strong>Approach:</strong></p>
+                        <ul>
+                            <li>Identified Indicators of Compromise (IoCs)</li>
+                            <li>Assisted in incident containment and recovery</li>
+                            <li>Documented the 5 Ws (Who, What, Where, When, Why) for forensic reporting</li>
+                        </ul>
+                    </div>
+        
+                    <div class="case-study">
+                        <h4>📌 2. Capturing and Analyzing Network Traffic</h4>
+                        <p><strong>Objective:</strong> Monitor and analyze network packets to detect suspicious activity.</p>
+                        <p><strong>Approach:</strong></p>
+                        <ul>
+                            <li>Filtered network traffic to isolate anomalies</li>
+                            <li>Identified unusual data patterns</li>
+                        </ul>
+                        <p><strong>Outcome:</strong> Gained hands-on experience in network forensics and real-time monitoring.</p>
+                        <p><strong>Tool Used:</strong> Wireshark</p>
+                    </div>
+        
+                    <div class="case-study">
+                        <h4>📌 3. Using tcpdump for Network Packet Capture</h4>
+                        <p><strong>Approach:</strong></p>
+                        <ul>
+                            <li>Used tcpdump to capture live packets</li>
+                            <li>Troubleshot errors caused by incorrect syntax</li>
+                        </ul>
+                        <p><strong>Outcome:</strong> Developed practical skills in network analysis and forensic investigation.</p>
+                    </div>
+        
+                    <div class="case-study">
+                        <h4>📌 4. Investigating a Suspicious File Using VirusTotal</h4>
+                        <p><strong>Problem:</strong> A financial services employee received a suspicious email attachment.</p>
+                        <p><strong>Approach:</strong></p>
+                        <ul>
+                            <li>Analyzed the SHA-256 hash using VirusTotal</li>
+                            <li>Verified against known malware databases</li>
+                            <li>Assessed the potential security impact</li>
+                        </ul>
+                    </div>
+                    <div class="case-study">
+                        <h4>📌 5. Senario Objectives met</h4>
+                        
+                        <p><strong>🚀 Key Skills Demonstrated:</strong></p>
+                        <ul>
+                            <li>✅ Incident Response: Identification, containment, eradication, recovery</li>
+                            <li>✅ Threat Analysis: Analyzing network traffic, identifying anomalies</li>
+                            <li>✅ Forensics: File hash analysis, network packet capture</li>
+                            <li>✅ Documentation: 5 Ws (Who, What, Where, When, Why)</li>
+                            <li>✅ Incident Handling: Detection, containment, eradication, recovery</li>
+                            <li>✅ Cybersecurity Tools: Wireshark, tcpdump, VirusTotal</li>
+                            <li>✅ Forensics & Investigation: File hash analysis, network packet capture</li>
+                            <li>✅ SOC Methodology: Threat documentation, security incident reporting</li>
+                            <li>This project highlights my ability to investigate, document, and respond to cybersecurity incidents in real-world scenarios.</li>
+                            
+                        </ul>
+                    </div>
+
+                    <div class="case-study">
+                        <h4>🖼️ Illustrations</h4>
+                        <div class="image-gallery">
+                            <img src="images/Capture d'écran 2025-03-20 173552.png" alt="Illustration 1" class="gallery-image">
+                            <img src="images/Capture d'écran 2025-03-20 173101.png" alt="Illustration 2" class="gallery-image">
+                            <img src="images/Capture d'écran 2025-03-18 205639 - Copie.png" alt="Illustration 3" class="gallery-image">
+                            <img src="images/Capture d'écran 2025-03-18 205556.png" alt="Illustration 4" class="gallery-image">
+                            <img src="images/Capture d'écran 2025-03-18 205308 - Copie.png" alt="Illustration 5" class="gallery-image">
+                            <img src="images/Capture d'écran 2025-03-18 203255 - Copie (2).png" alt="Illustration 6" class="gallery-image">
+                            <img src="images/Capture d'écran 2025-03-18 203223 - Copie (2).png" alt="Illustration 7" class="gallery-image">
+                            <img src="images/Capture d'écran 2025-03-18 195521.png" alt="Illustration 8" class="gallery-image">
+                            <img src="images/Capture d'écran 2025-03-18 194510.png" alt="Illustration 9" class="gallery-image">
+                            <img src="images/Capture d'écran 2025-03-18 154728 - Copie.png" alt="Illustration 10" class="gallery-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="project-card">
+            <h3 class="project-title">🔹 Project 3: SOC Simulation Exercise</h3>
+            <div class="project-content">
+                <div class="platform-info">
+                    <p><strong>Platform:</strong> TryHackMe</p>
+                    <p><strong>Tools Used:</strong> Splunk, Suricata, SIEM technologies</p>
+                </div>
+                <div class="project-section">
+                    <h4>📍 Project Overview</h4>
+                    <p><strong>Title:</strong> SOC Analyst Simulation - Threat Detection & Incident Response</p>
+                    <p><strong>Scenario Type:</strong> Security Operations Center (SOC) simulation</p>
+        
+                    <div class="simulation-details">
+                        <h4>Project Description</h4>
+                        <p>This hands-on simulation replicated a real Security Operations Center environment where I:</p>
+                        <ul>
+                            <li>Monitored and analyzed real-time security alerts</li>
+                            <li>Distinguished between true positive and false positive alerts</li>
+                            <li>Investigated potential security incidents</li>
+                            <li>Documented findings in case reports</li>
+                            <li>Practiced SOC workflows using industry-standard tools</li>
+                        </ul>
+                    </div>
+        
+                    <div class="tools-section">
+                        <h4>Tools & Techniques</h4>
+                        <ul>
+                            <li><strong>Splunk:</strong> Used for log analysis and event correlation</li>
+                            <li><strong>Suricata:</strong> Network monitoring for malicious activity</li>
+                            <li><strong>SIEM Concepts:</strong> Applied event triage and prioritization</li>
+                            <li><strong>Incident Documentation:</strong> Created detailed case reports</li>
+                        </ul>
+                    </div>
+        
+                    <div class="objectives-section">
+                        <h4>Scenario Objectives Met</h4>
+                        <ul>
+                            <li>Successfully monitored and analyzed real-time alerts</li>
+                            <li>Identified and documented critical events including:
+                                <ul>
+                                    <li>Suspicious registry modifications</li>
+                                    <li>Potential phishing emails</li>
+                                </ul>
+                            </li>
+                            <li>Closed all true positive alerts to complete the scenario</li>
+                        </ul>
+                    </div>
+        
+                    <div class="skills-section">
+                        <h4>Skills Demonstrated</h4>
+                        <ul>
+                            <li>Security log analysis</li>
+                            <li>Threat detection</li>
+                            <li>Incident investigation</li>
+                            <li>SIEM navigation</li>
+                            <li>Alert triage</li>
+                            <li>Documentation and reporting</li>
+                        </ul>
+                    </div>
+        
+                    <div class="case-study">
+                        <h4>🖼️ Illustrations</h4>
+                        <div class="image-gallery">
+                            <img src="images/Capture d'écran 2025-03-24 132328 - Copie (2).png" alt="SOC Analysis 1" class="gallery-image">
+                            <img src="images/Capture d'écran 2025-03-24 132328 - Copie (2).png" alt="SOC Analysis 2" class="gallery-image">
+                            <img src="images/Capture d'écran 2025-03-23 181301 - Copie (2).png" alt="SOC Analysis 3" class="gallery-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+            <div class="project-card">
+                <h3 class="project-title">🔹 Project 4: Advanced Network Scanner</h3>
+                <div class="project-content">
+                    <div class="project-section">
+                        <h4>📍 Project Overview</h4>
+                        <p><strong>Title:</strong> Multi-Feature Network Scanning Tool</p>
+                        <p><strong>Category:</strong> Network Security / Ethical Hacking</p>
+                        <p><strong>Language:</strong> Python</p>
+                        <p><strong>Key Technologies:</strong> Scapy, Nmap, Threading</p>
+
+                        <div class="features-section">
+                            <h4>Features</h4>
+                            <ul>
+                                <li>Port scanning</li>
+                                <li>Service detection</li>
+                                <li>Host discovery</li>
+                                <li>Multi-format reporting</li>
+                            </ul>
+                        </div>
+
+                        <div class="implementation-section">
+                            <h4>Technical Implementation</h4>
+                            
+                            <div class="feature-block">
+                                <h5>1. Host Discovery (Ping Sweep)</h5>
+                                <ul>
+                                    <li>SYN scan technique for stealthy port detection</li>
+                                    <li>Multi-threaded implementation for improved performance</li>
+                                    <li>Customizable port ranges</li>
+                                </ul>
+                            </div>
+
+                            <div class="feature-block">
+                                <h5>2. TCP Port Scanning</h5>
+                                <ul>
+                                    <li>ICMP-based ping sweep to identify live hosts</li>
+                                    <li>Supports CIDR notation (e.g., 192.168.1.0/24)</li>
+                                </ul>
+                            </div>
+
+                            <div class="feature-block">
+                                <h5>3. Service Detection</h5>
+                                <ul>
+                                    <li>Integrated Nmap for service/version detection</li>
+                                    <li>Identifies running services on open ports</li>
+                                </ul>
+                            </div>
+
+                            <div class="feature-block">
+                                <h5>4. Reporting System</h5>
+                                <ul>
+                                    <li>JSON and CSV export options</li>
+                                    <li>Structured data including IP, port, and service information</li>
+                                </ul>
+                            </div>
+
+                            <div class="code-link">
+                                <h5>5. Code Highlights</h5>
+                                <p>View the complete implementation on GitHub: <a href="https://github.com/Wendyiida/Wendyiida/commit/0a8da941b54e5b7564d90e132996f1acc88ab0c2#diff-a0dd940525c8bed23b9a973c1a16299e6b31f24f0fcb68c037340692aa2d7809" target="_blank">Network Scanner Source Code</a></p>
+                            </div>
+
+                        <div class="skills-demonstrated">
+                            <h4>Skills Demonstrated</h4>
+                            <ul>
+                                <li>✅ Network Protocol Knowledge: TCP/IP, ICMP</li>
+                                <li>✅ Security Scanning Techniques: SYN scanning, service fingerprinting</li>
+                                <li>✅ Network Protocol Knowledge: TCP/IP, ICMP</li>
+                                <li>✅ Performance Optimization: Multi-threading implementation</li>
+                                <li>✅ Tool Integration: Combining Scapy and Nmap functionalities</li>
+                                <li>✅ Data Handling: JSON/CSV export capabilities</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-form">
+            <form>
+
+
+
+
+            </form>
+        </div>
+        <p>Email: <a href="mailto:wendyiidamicael@gmail.com">wendyiidamicael@gmail.com</a></p>
+        <p>Phone: +226 64464070</p>
+        <p>
+            LinkedIn: <a href="https://bf.linkedin.com/in/jules-wendyiida-mica%C3%ABl-sawadogo-1736382a5">https://bf.linkedin.com/in/jules-wendyiida-micaël-sawadogo-1736382a5</a>
+        </p>
+        <p>GitHub: <a href="https://github.com/Wendyiida">https://github.com/Wendyiida</a></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Jules Wendyiida Micaël SAWADOGO Cyber Security Analyst</p>
+    </footer>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                    current = section.getAttribute('id');
+                }
+                if (window.scrollY >= section.offsetTop - window.innerHeight / 2) {
+                    section.classList.add('active');
+                } 
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    
+    document.querySelectorAll('.project-title').forEach(title => {
+        title.addEventListener('click', () => {
+            const content = title.nextElementSibling;
+            const isActive = content.classList.contains('active');
+            
+            // Close all project contents
+            document.querySelectorAll('.project-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Open clicked project if it wasn't active
+            if (!isActive) {
+                content.classList.add('active');
+            }
+        });
+    });
+    </script>
+</body>
+</html>
+</index>
