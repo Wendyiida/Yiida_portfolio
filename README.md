@@ -1,25 +1,25 @@
 # Portfolio - Jules Wendyiida Micaël SAWADOGO
 
-Ce portfolio présente mes compétences et projets en tant qu'analyste en cybersécurité.
+This portfolio showcases my skills and projects as a Cybersecurity Analyst.
 
-## Technologies utilisées
+## Technologies Used
 
 - HTML5
 - CSS3
-- JavaScript vanilla
+- Vanilla JavaScript
 
-## Visualiser le site
+## View the Site
 
-Le site est accessible à l'adresse : https://wendyiida.github.io/Yiida_portfolio/
+The site is accessible at: https://wendyiida.github.io/Yiida_portfolio/
 
-## Installation locale
+## Local Installation
 
-1. Clonez le repository
+1. Clone the repository
 ```bash
 git clone https://github.com/Wendyiida/Yiida_portfolio.git
 ```
 
-2. Ouvrez le fichier `index.html` dans votre navigateur
+2. Open `index.html` in your browser
 
 ## Contact
 
