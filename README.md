@@ -12,14 +12,6 @@ This portfolio showcases my skills and projects as a Cybersecurity Analyst.
 
 The site is accessible at: https://wendyiida.github.io/Yiida_portfolio/
 
-## Local Installation
-
-1. Clone the repository
-```bash
-git clone https://github.com/Wendyiida/Yiida_portfolio.git
-```
-
-2. Open `index.html` in your browser
 
 ## Contact
 
